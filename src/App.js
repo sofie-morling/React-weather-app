@@ -25,6 +25,17 @@ function App () {
   console.log(position);
 
 
+  const findUser = evt => {
+    if (evt) {
+    fetch(`https://hendrik-cors-proxy.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&units=metric&appid=${api.key}`)
+      .then(res => res.json())
+      .then(result => {
+        setWeather(result)
+      });
+    }
+  }
+
+
   // Weather search (location)
   const search = evt => {
     if (evt.key === 'Enter') {
@@ -86,6 +97,7 @@ function App () {
             onKeyPress={search}
           />
         </div>
+        <button onClick={e => findUser(position)}>Find Me</button>
         {(typeof weather.main != 'undefined') ? (
           <div>
             <div className='location-box'>
