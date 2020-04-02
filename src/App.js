@@ -14,10 +14,15 @@ function App () {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log("Latitude id : ", position.coords.latitude);
-      console.log("Longitude is : ", position.coords.longitude);
+      setPosition({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      })
     })
-  })
+    
+  }, [])
+
+  console.log(position);
 
 
   // Weather search (location)
