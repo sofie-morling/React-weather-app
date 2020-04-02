@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // API Key and URL
 const api = {
@@ -9,6 +9,16 @@ const api = {
 function App () {
   const [query, setQuery] = useState('')
   const [weather, setWeather] = useState({})
+  const [position, setPosition] = useState({})
+
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log("Latitude id : ", position.coords.latitude);
+      console.log("Longitude is : ", position.coords.longitude);
+    })
+  })
+
 
   // Weather search (location)
   const search = evt => {
