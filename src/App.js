@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Home from './components/Home';
+import Forecast from './components/Forecast';
+import About from './components/About';
+import NotFound from './components/NotFound';
+
 
 // API Key and URL
 const api = {
@@ -6,42 +12,42 @@ const api = {
   base: 'https://api.openweathermap.org/data/2.5/'
 }
 
-function App () {
+function App() {
   const [query, setQuery] = useState('')
   const [weather, setWeather] = useState({})
   const [position, setPosition] = useState({})
 
   const findUser = evt => {
-    
+
     if (evt) {
       navigator.geolocation.getCurrentPosition((position, error) => {
-       
+
         setPosition({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
         })
-      
-       if (error) {
-        alert('Please accept geolocation to fetch your position');
-      }
+
+        if (error) {
+          alert('Please accept geolocation to fetch your position');
+        }
       })
     }
   }
 
-    useEffect(() => {
-      fetch(`https://hendrik-cors-proxy.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&units=metric&appid=${api.key}`)
-        .then(res => res.json())
-        .then(result => {
-          setWeather(result)
-        });
-    }, [position])
+  useEffect(() => {
+    fetch(`https://hendrik-cors-proxy.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&units=metric&appid=${api.key}`)
+      .then(res => res.json())
+      .then(result => {
+        setWeather(result)
+      });
+  }, [position])
 
   // Weather search (location)
   const search = evt => {
     if (evt.key === 'Enter') {
       fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-      .then(res => res.json())
-      .then(result => {
+        .then(res => res.json())
+        .then(result => {
           setWeather(result)
           setQuery('')
         });
@@ -83,38 +89,86 @@ function App () {
   }
 
   return (
-    <div className={
-      // If search is undefined show "app" if search location is more then 16 degrees show "app warm" else show "app"
-      (typeof weather.main != "undefined") ? ((weather.main.temp > 16) ? 'app warm' : 'app') : 'app'}>
-      <main>
-        <div className='search-box'>
-          <input
-            type='text'
-            className='search-bar'
-            placeholder='Search...'
-            onChange={e => setQuery(e.target.value)}
-            value={query}
-            onKeyPress={search}
-          />
-        </div>
-        <button onClick={e => findUser(position)}>Find Me</button>
-        {(typeof weather.main != 'undefined') ? (
-          <div>
-            <div className='location-box'>
-              <div className='location'>
-                {weather.name}, {weather.sys.country}
-              </div>
-              <div className='date'>{dateBuilder(new Date())}</div>
-            </div>
-            <div className='weather-box'>            
-              <div className='temp'>{Math.round(weather.main.temp)}°C</div>
-              <div className='sun'>Sunrise: {weather.sys.sunrise}, Sunset: {weather.sys.sunset}</div>
-            </div>
+    <Router>
+      <div className={
+        // If search is undefined show "app" if search location is more then 16 degrees show "app warm" else show "app"
+        (typeof weather.main != "undefined") ? ((weather.main.temp > 16) ? 'app warm' : 'app') : 'app'}>
+        <main>
+          <div className='search-box'>
+            <input
+              type='text'
+              className='search-bar'
+              placeholder='Search...'
+              onChange={e => setQuery(e.target.value)}
+              value={query}
+              onKeyPress={search}
+            />
           </div>
-        ) : ('')}
-      </main>
-    </div>
-  )
+          <button onClick={e => findUser(position)}>Find Me</button>
+          <div>
+            <nav>
+              <ul>
+                <li><Link to="/">Homepage</Link></li>
+                <li><Link to="/forecast">Forecast 5 days</Link></li>
+                <li><Link to="/about">About</Link></li>
+              </ul>
+            </nav>
+          </div>
+
+          {(typeof weather.main != 'undefined') ? (
+            <div>
+              <div className="location-box">
+                <div className="location">{weather.name}, {weather.sys.country}</div>
+                <div className="date">{dateBuilder(new Date())}</div>
+              </div>
+
+              <div className="weather-box">
+                <div className="temp">
+                  {Math.round(weather.main.temp)}°c
+          </div>
+
+                <div className="weather">{weather.weather[0].main}</div>
+
+                <div className="wind-force">Wind Force:
+            {Math.round(weather.wind.speed)} M/S
+            </div>
+
+                <div className="humidity">Humidity:
+            {Math.round(weather.main.humidity)}%
+            </div>
+
+                <div className="sunrise">Sunrise:
+                  {(weather.sys.sunrise)}
+                </div>
+
+                <div className="sunset">Sunset:
+                  {(weather.sys.sunset)}
+                </div>
+
+
+
+              </div>
+            </div>
+          ) : ('')}
+
+          <Switch>
+            <Route path="/forecast">
+              <Forecast />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+        </main>
+      </div >
+    </Router>
+  );
 }
 
-export default App
+export default App;

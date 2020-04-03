@@ -75,6 +75,10 @@ main {
   text-shadow: 2px 2px rgba(50, 50, 70, 0.5)
 }
 
+.weather-box {
+  text-align: center;
+}
+
 .weather-box .temp {
   position: relative;
   display: inline-block;
@@ -96,6 +100,34 @@ main {
 .weather-box .weather {
   color: #FFF;
   font-size: 48px;
+  font-weight: 700;
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+.weather-box .wind-force {
+  color: #FFF;
+  font-size: 28px;
+  font-weight: 700;
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+.weather-box .humidity {
+  color: #FFF;
+  font-size: 28px;
+  font-weight: 700;
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+.weather-box .sunrise {
+  color: #FFF;
+  font-size: 28px;
+  font-weight: 700;
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+.weather-box .sunset {
+  color: #FFF;
+  font-size: 28px;
   font-weight: 700;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
