@@ -16,6 +16,7 @@ function App() {
   const [query, setQuery] = useState('')
   const [weather, setWeather] = useState({})
   const [position, setPosition] = useState({})
+  const [unit, setUnit] = useState('metric')
 
   const findUser = evt => {
 
@@ -35,7 +36,7 @@ function App() {
   }
 
   useEffect(() => {
-    fetch(`https://hendrik-cors-proxy.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&units=metric&appid=${api.key}`)
+    fetch(`https://hendrik-cors-proxy.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&units=${unit}&appid=${api.key}`)
       .then(res => res.json())
       .then(result => {
         setWeather(result)
@@ -45,7 +46,7 @@ function App() {
   // Weather search (location)
   const search = evt => {
     if (evt.key === 'Enter') {
-      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+      fetch(`${api.base}weather?q=${query}&units=${unit}&APPID=${api.key}`)
         .then(res => res.json())
         .then(result => {
           setWeather(result)
@@ -105,6 +106,28 @@ function App() {
             />
           </div>
           <button onClick={e => findUser(position)}>Find Me</button>
+          <div class="unit-buttons">
+          <label>
+          <input
+          type="radio"
+          name="units"
+          checked={unit === "metric"}
+          value="metric"
+          onChange={(e) => setUnit(e.target.value)}
+          />
+          Celcius
+          </label>
+          <label>
+          <input
+          type="radio"
+          name="units"
+          checked={unit === "imperial"}
+          value="imperial"
+          onChange={(e) => setUnit(e.target.value)}
+          />
+          Fahrenheit
+          </label>
+          </div>
           <div>
             <nav>
               <ul>
