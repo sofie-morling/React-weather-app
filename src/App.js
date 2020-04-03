@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // API Key and URL
 const api = {
@@ -9,6 +9,32 @@ const api = {
 function App () {
   const [query, setQuery] = useState('')
   const [weather, setWeather] = useState({})
+  const [position, setPosition] = useState({})
+
+  const findUser = evt => {
+    
+    if (evt) {
+      navigator.geolocation.getCurrentPosition((position, error) => {
+       
+        setPosition({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        })
+      
+       if (error) {
+        alert('Please accept geolocation to fetch your position');
+      }
+      })
+    }
+  }
+
+    useEffect(() => {
+      fetch(`https://hendrik-cors-proxy.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&units=metric&appid=${api.key}`)
+        .then(res => res.json())
+        .then(result => {
+          setWeather(result)
+        });
+    }, [position])
 
   // Weather search (location)
   const search = evt => {
@@ -71,6 +97,7 @@ function App () {
             onKeyPress={search}
           />
         </div>
+        <button onClick={e => findUser(position)}>Find Me</button>
         {(typeof weather.main != 'undefined') ? (
           <div>
             <div className='location-box'>
