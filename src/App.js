@@ -81,7 +81,7 @@ function App () {
             </div>
             <div className='weather-box'>            
               <div className='temp'>{Math.round(weather.main.temp)}°C</div>
-              <div className='weather'>Sunny</div>
+              <div className='sun'>Sunrise: {weather.sys.sunrise}, Sunset: {weather.sys.sunset}</div>
             </div>
           </div>
         ) : ('')}
