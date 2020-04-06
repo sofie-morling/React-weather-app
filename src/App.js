@@ -90,7 +90,9 @@ function App() {
   }
 
   // Unix timestamp convertion for sunrise
-  console.log(weather)
+  console.log(`${api.base}weather?lat=35&lon=139&sunrise=weather.sys.sunrise&APPID=${api.key}`)
+  // For testing
+  // https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&APPID=12713ce52420589c2732fa06b705ae93&sunset=sys.sunset
 
   let unix_timestampRise = weather.sys.sunrise
   let dateRise = new Date(unix_timestampRise * 1000);
