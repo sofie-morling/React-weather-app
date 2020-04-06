@@ -90,21 +90,23 @@ function App() {
   }
 
   // Unix timestamp convertion for sunrise
-let unix_timestampRise = {(weather.sys.sunrise)}
-let dateRise = new DateRise(unix_timestampRise * 1000);
-let hoursRise = date.getHoursRise();
-let minutesRise = "0" + date.getMinutesRise();
-let secondsRise = "0" + date.getSecondsRise();
-let formattedRiseTime = hoursRise + ":" + minutesRise.substr(-2) + ":" + secondsRise.substr(-2);
+  console.log(weather)
 
-// Unix timestamp convertion for sunset
-let unix_timestampSet = {(weather.sys.sunset)}
-let dateSet = new DateSet(unix_timestampSet * 1000);
-let hoursSet = date.getHoursSet();
-let minutesSet = "0" + date.getMinutesSet();
-let secondsSet = "0" + date.getSecondsSet();
-let formattedSetTime = hoursSet + ":" + minutesSet.substr(-2) + ":" + secondsSet.substr(-2);
+  let unix_timestampRise = weather.sys.sunrise
+  let dateRise = new Date(unix_timestampRise * 1000);
+  let hoursRise = dateRise.getHoursRise();
+  let minutesRise = "0" + dateRise.getMinutesRise();
+  let secondsRise = "0" + dateRise.getSecondsRise();
+  let formattedRiseTime = hoursRise + ":" + minutesRise.substr(-2) + ":" + secondsRise.substr(-2);
 
+  // Unix timestamp convertion for sunset
+
+  let unix_timestampSet = weather.sys.sunset
+  let dateSet = new Date(unix_timestampSet * 1000);
+  let hoursSet = dateSet.getHoursSet();
+  let minutesSet = "0" + dateSet.getMinutesSet();
+  let secondsSet = "0" + dateSet.getSecondsSet();
+  let formattedSetTime = hoursSet + ":" + minutesSet.substr(-2) + ":" + secondsSet.substr(-2);
 
 return (
   <Router>
@@ -155,9 +157,6 @@ return (
           </nav>
         </div>
 
-
-
-
         {(typeof weather.main != 'undefined') ? (
           <div>
             <div className="location-box">
@@ -168,27 +167,25 @@ return (
             <div className="weather-box">
               <div className="temp">
                 {Math.round(weather.main.temp)}°c
-          </div>
+              </div>
 
               <div className="weather">{weather.weather[0].main}</div>
 
               <div className="wind-force">Wind Force:
-            {Math.round(weather.wind.speed)} M/S
-            </div>
+                {Math.round(weather.wind.speed)} M/S
+              </div>
 
               <div className="humidity">Humidity:
-            {Math.round(weather.main.humidity)}%
-            </div>
+                {Math.round(weather.main.humidity)}%
+              </div>
 
               <div className="sunrise">Sunrise:
-                  {formattedRiseTime}
+                  {(weather.sys.sunrise)}
               </div>
+
               <div className="sunset">Sunset:
-                  {formattedSetTime}
+                  {(weather.sys.sunset)}
               </div>
-
-
-
             </div>
           </div>
         ) : ('')}
@@ -209,8 +206,8 @@ return (
         </Switch>
       </main>
     </div >
-  </Router>
-);
+  </Router> 
+  );
 }
 
 export default App;
