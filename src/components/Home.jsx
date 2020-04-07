@@ -83,6 +83,13 @@ export const Home = () => {
       
           return `${day} ${date} ${month} ${year}`
         }
+
+        const convertUnixToTime = (unix_time) => {
+          let date = new Date(unix_time * 1000);
+          let hours = date.getHours();
+          let minutes = "0" + date.getMinutes();
+          return hours + ':' + minutes.substr(-2);
+        }
     
     
     return (
@@ -102,7 +109,7 @@ export const Home = () => {
                 />
               </div>
               <button onClick={e => findUser(position)}>Find Me</button>
-              <div class="unit-buttons">
+              <div className="unit-buttons">
               <label>
               <input
               type="radio"
@@ -135,6 +142,7 @@ export const Home = () => {
                   <div className="weather-box">
                     <div className="temp">
                       {Math.round(weather.main.temp)}°c
+
               </div>
     
                     <div className="weather">{weather.weather[0].main}</div>
@@ -148,11 +156,11 @@ export const Home = () => {
                 </div>
     
                     <div className="sunrise">Sunrise:
-                      {(weather.sys.sunrise)}
+                      {convertUnixToTime(weather.sys.sunrise)}
                     </div>
     
                     <div className="sunset">Sunset:
-                      {(weather.sys.sunset)}
+                      {convertUnixToTime(weather.sys.sunset)}
                     </div>
     
     

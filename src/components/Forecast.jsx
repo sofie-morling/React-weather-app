@@ -6,7 +6,6 @@ export const Forecast = () => {
         base: 'https://api.openweathermap.org/data/2.5/'
       }
       
-
         const [query, setQuery] = useState('')
         const [weather, setWeather] = useState({})
         const [position, setPosition] = useState({})
@@ -82,6 +81,13 @@ export const Forecast = () => {
       
           return `${day} ${date} ${month} ${year}`
         }
+
+        const convertUnixToTime = (unix_time) => {
+          let date = new Date(unix_time * 1000);
+          let hours = date.getHours();
+          let minutes = "0" + date.getMinutes();
+          return hours + ':' + minutes.substr(-2);
+        }
     
     
     return (
@@ -147,11 +153,11 @@ export const Forecast = () => {
                 </div>
     
                     <div className="sunrise">Sunrise:
-                      {(weather.sys.sunrise)}
+                      {convertUnixToTime(weather.sys.sunrise)}
                     </div>
     
                     <div className="sunset">Sunset:
-                      {(weather.sys.sunset)}
+                      {convertUnixToTime(weather.sys.sunset)}
                     </div>
     
     
