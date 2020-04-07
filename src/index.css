@@ -9,9 +9,9 @@ body {
 }
 
 .home {
-  background-image: url('./assets/bg.jpg');
+  background-color: #808080;
   background-repeat: no-repeat;
-  background-size: 40% 100%;
+  background-size: 100% 100%;
 }
 
 .app {
@@ -29,14 +29,9 @@ body {
 main {
   min-height: 100vh;
   padding: 25px;
-  width: 500px;
+  width: 100%;
 }
 
-.data-right {
-  position: fixed;
-  top: 150px;
-  right: 290px;
-}
 
 .search-box {
   width: 100%;
@@ -148,10 +143,10 @@ main {
 .button {
   cursor: pointer;
   background-color: transparent;
-  display:inline-block;
-  padding:0.35em 200px;
+  display: block;
+  padding:0.35em 100px;
   border:0.1em solid #FFFFFF;
-  margin:0 0.3em 0.3em 0;
+  margin: 0 auto;
   border-radius:0.12em;
   box-sizing: border-box;
   text-decoration:none;
@@ -170,4 +165,9 @@ main {
   display:block;
   margin:0.4em auto;
   }
+}
+
+.icon-row {
+  display: flex;
+  justify-content: space-evenly;
 }

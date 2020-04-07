@@ -150,7 +150,7 @@ export const Home = () => {
               </div>
 
               <div className="weather">{weather.weather[0].main}</div>
-              <div className="data-right">
+              <div className="icon-row">
                 <div className="wind-force"><img src={wind} alt="wind-icon" />
                   {Math.round(weather.wind.speed)} M/S
                 </div>
@@ -168,9 +168,9 @@ export const Home = () => {
                 </div>
               </div>
 
-
             </div>
           </div>
+
         ) : ('')}
 
 
