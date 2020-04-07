@@ -12,6 +12,7 @@ export const Home = () => {
         const [weather, setWeather] = useState({})
         const [position, setPosition] = useState({})
         const [unit, setUnit] = useState('metric')
+        const [outUnit, setOutUnit] = useState("")
       
         const findUser = evt => {
       
@@ -35,6 +36,7 @@ export const Home = () => {
             .then(res => res.json())
             .then(result => {
               setWeather(result)
+              setOutUnit(unit === "metric" ? "°C" : "°F");
             });
         }, [position])
       
@@ -46,6 +48,7 @@ export const Home = () => {
               .then(result => {
                 setWeather(result)
                 setQuery('')
+                setOutUnit(unit === "metric" ? "°C" : "°F");
               });
           }
         }
@@ -109,28 +112,26 @@ export const Home = () => {
                 />
               </div>
               <button onClick={e => findUser(position)}>Find Me</button>
-              <div className="unit-buttons">
-              <label>
-              <input
-              type="radio"
-              name="units"
-              checked={unit === "metric"}
-              value="metric"
-              onChange={(e) => setUnit(e.target.value)}
-              />
-              Celcius
-              </label>
-              <label>
-              <input
-              type="radio"
-              name="units"
-              checked={unit === "imperial"}
-              value="imperial"
-              onChange={(e) => setUnit(e.target.value)}
-              />
-              Fahrenheit
-              </label>
-              </div>
+              <div className="radioButtons">
+                <label htmlFor="metricButton">°C</label>
+                <input
+                id="metricButton"
+                type="radio"
+                name="units"
+                checked={unit === "metric"}
+                value="metric"
+                onChange={(e) => setUnit(e.target.value)}
+                />
+                <label htmlFor="imperialButton">°F</label>
+                <input
+                id="imperialButton"
+                type="radio"
+                name="units"
+                checked={unit === "imperial"}
+                value="imperial"
+                onChange={(e) => setUnit(e.target.value)}
+                />
+                </div>
     
               {(typeof weather.main != 'undefined') ? (
                 <div>
@@ -141,7 +142,7 @@ export const Home = () => {
     
                   <div className="weather-box">
                     <div className="temp">
-                      {Math.round(weather.main.temp)}°c
+                      {Math.round(weather.main.temp)} {outUnit}
 
               </div>
     
