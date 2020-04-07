@@ -94,7 +94,7 @@ function App() {
   // For testing
   // https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&APPID=12713ce52420589c2732fa06b705ae93&sunset=sys.sunset
 
-  let unix_timestampRise = weather.sys.sunrise
+  /*let unix_timestampRise = weather.sys.sunrise
   let dateRise = new Date(unix_timestampRise * 1000);
   let hoursRise = dateRise.getHoursRise();
   let minutesRise = "0" + dateRise.getMinutesRise();
@@ -109,7 +109,7 @@ function App() {
   let minutesSet = "0" + dateSet.getMinutesSet();
   let secondsSet = "0" + dateSet.getSecondsSet();
   let formattedSetTime = hoursSet + ":" + minutesSet.substr(-2) + ":" + secondsSet.substr(-2);
-
+*/
 return (
   <Router>
     <div className={
