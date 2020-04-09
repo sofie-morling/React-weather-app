@@ -89,7 +89,7 @@ export const Home = () => {
            <label htmlFor="imperialButton">°F</label>
            </div>
 
-        <button className="button" onClick={e => findUser(position)}>Find Me</button>
+           <button className="button" onClick={findUser}>Find Me</button>
         {(typeof weather.main != 'undefined') ? (
           <div>
             <div className="location-box">
