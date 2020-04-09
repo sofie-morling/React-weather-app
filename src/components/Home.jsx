@@ -114,9 +114,7 @@ export const Home = () => {
             onKeyPress={search}
           />
         </div>
-        <button className="button" onClick={e => findUser(position)}>Find Me</button>
         <div className="radioButtons">
-          <label htmlFor="metricButton">°C</label>
           <input
             id="metricButton"
             type="radio"
@@ -125,7 +123,7 @@ export const Home = () => {
             value="metric"
             onChange={(e) => setUnit(e.target.value)}
           />
-          <label htmlFor="imperialButton">°F</label>
+          <label htmlFor="metricButton">°C</label>
           <input
             id="imperialButton"
             type="radio"
@@ -134,8 +132,10 @@ export const Home = () => {
             value="imperial"
             onChange={(e) => setUnit(e.target.value)}
           />
-        </div>
+           <label htmlFor="imperialButton">°F</label>
+           </div>
 
+        <button className="button" onClick={e => findUser(position)}>Find Me</button>
         {(typeof weather.main != 'undefined') ? (
           <div>
             <div className="location-box">
