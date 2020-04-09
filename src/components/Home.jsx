@@ -1,9 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import wind from '../assets/wind.png';
 import humidity from '../assets/humidity.png';
 import sunrise from '../assets/sunrise.png';
 import sunset from '../assets/sunset.png';
+
+
 
 export const Home = () => {
 
@@ -44,6 +45,7 @@ export const Home = () => {
         setOutUnit(unit === "metric" ? "°C" : "°F");
       });
   }, [position])
+
 
   // Weather search (location)
   const search = evt => {
@@ -113,6 +115,7 @@ export const Home = () => {
             value={query}
             onKeyPress={search}
           />
+
         </div>
         <button className="button" onClick={e => findUser(position)}>Find Me</button>
         <div className="radioButtons">
@@ -146,10 +149,14 @@ export const Home = () => {
             <div className="weather-box">
               <div className="temp">
                 {Math.round(weather.main.temp)} {outUnit}
-
               </div>
 
               <div className="weather">{weather.weather[0].main}</div>
+
+              <div className="icon">
+                <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}></img>
+              </div>
+
               <div className="icon-row">
                 <div className="wind-force"><img src={wind} alt="wind-icon" />
                   {Math.round(weather.wind.speed)} M/S
