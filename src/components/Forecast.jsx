@@ -36,7 +36,7 @@ export const Forecast = () => {
               setWeather(result)
               setOutUnit(unit === "metric" ? "°C" : "°F");
             });
-        }, [position])
+        }, [position, unit, api.key])
      
         // Weather search (location)
         const search = evt => {
@@ -50,6 +50,8 @@ export const Forecast = () => {
               });
           }
         }
+
+        console.log(weather);
       
         // Date builder
         const dateBuilder = d => {
