@@ -100,12 +100,12 @@ export const Forecast = () => {
       
               ) : ('')}
       
-      
-            </main>
-          </div>
-      
-      
-        );
-      }
-      
-      export default Forecast;
+ 
+      </main>
+    </div>
+
+
+  );
+}
+
+export default Forecast;
