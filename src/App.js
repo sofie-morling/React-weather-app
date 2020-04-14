@@ -11,7 +11,7 @@ function App() {
       
           <div>
             <nav>
-                <li><Link to="/">Homepage</Link></li>
+                <li><Link to="/">Todays Weather</Link></li>
                 <li><Link to="/forecast">Forecast 5 days</Link></li>
             </nav>
           </div>
