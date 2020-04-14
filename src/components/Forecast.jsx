@@ -34,7 +34,7 @@ export const Forecast = () => {
      
         const search = evt => {
           if (evt.key === 'Enter') {
-            fetch(`https://hendrik-cors-proxy.herokuapp.com/${api.base}forecast?q=${query}&units=${unit}&APPID=${api.key}`)
+            fetch(`${api.base}forecast?q=${query}&units=${unit}&APPID=${api.key}`)
               .then(res => res.json())
               .then(result => {
                 setWeather(result)
@@ -88,7 +88,7 @@ export const Forecast = () => {
               
                   <div className="weatherWrapper">
                   {weather.list.map(interval => 
-                    <div className="card">
+                    <div key={interval.dt_txt} className="card">
                       <p className="forecastItem">{interval.dt_txt}</p> 
                       <p className="forecastItem"><img src={temp} alt="temperature-icon" /> {interval.main.temp} {outUnit}</p> 
                       <p className="forecastItem"><img src={humidity} alt="humidity-icon" /> {interval.main.humidity}</p> 

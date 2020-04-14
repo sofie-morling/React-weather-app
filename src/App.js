@@ -11,11 +11,8 @@ function App() {
       
           <div>
             <nav>
-              <ul>
                 <li><Link to="/">Homepage</Link></li>
                 <li><Link to="/forecast">Forecast 5 days</Link></li>
-                <li><Link to="/about">About</Link></li>
-              </ul>
             </nav>
           </div>
 
@@ -35,6 +32,8 @@ function App() {
           </Switch>
      
     </Router>
+  
+    
   );
 }
 
