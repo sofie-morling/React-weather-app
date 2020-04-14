@@ -32,10 +32,9 @@ export const Forecast = () => {
           }
         }
      
-        // Weather search (location)
         const search = evt => {
           if (evt.key === 'Enter') {
-            fetch(`api.openweathermap.org/data/2.5/forecast?q=${query}&units=${unit}&appid=${api.key}`)
+            fetch(`https://hendrik-cors-proxy.herokuapp.com/${api.base}forecast?q=${query}&units=${unit}&APPID=${api.key}`)
               .then(res => res.json())
               .then(result => {
                 setWeather(result)
