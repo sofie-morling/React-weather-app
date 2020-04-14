@@ -218,7 +218,7 @@ background-color: darkgray;
 cursor: pointer;
 text-decoration: underline;
 }
-=======
+
 input[type=radio] {
   position: absolute;
   visibility: hidden;

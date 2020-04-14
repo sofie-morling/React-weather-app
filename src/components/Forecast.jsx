@@ -49,7 +49,6 @@ export const Forecast = () => {
     
         return (
           <div className="home">
-      
             <main>
               <div className='search-box'>
                 <input
@@ -61,9 +60,7 @@ export const Forecast = () => {
                   onKeyPress={search}
                 />
               </div>
-              <button className="button" onClick={findUser}>Find Me</button>
               <div className="radioButtons">
-                <label htmlFor="metricButton">°C</label>
                 <input
                   id="metricButton"
                   type="radio"
@@ -72,7 +69,7 @@ export const Forecast = () => {
                   value="metric"
                   onChange={(e) => setUnit(e.target.value)}
                 />
-                <label htmlFor="imperialButton">°F</label>
+                <label htmlFor="metricButton">°C</label>
                 <input
                   id="imperialButton"
                   type="radio"
@@ -81,31 +78,23 @@ export const Forecast = () => {
                   value="imperial"
                   onChange={(e) => setUnit(e.target.value)}
                 />
+                <label htmlFor="imperialButton">°F</label>
               </div>
-      
+              <button className="button" onClick={findUser}>Find Me</button>
               {(typeof weather.list != 'undefined') ? (
-                
-              
-                  <div className="weatherWrapper">
-                  {weather.list.map(interval => 
+                <div className="weatherWrapper">
+                  {weather.list.map(interval =>
                     <div key={interval.dt_txt} className="card">
-                      <p className="forecastItem">{interval.dt_txt}</p> 
-                      <p className="forecastItem"><img src={temp} alt="temperature-icon" /> {interval.main.temp} {outUnit}</p> 
-                      <p className="forecastItem"><img src={humidity} alt="humidity-icon" /> {interval.main.humidity}</p> 
+                      <p className="forecastItem">{interval.dt_txt}</p>
+                      <p className="forecastItem"><img src={temp} alt="temperature-icon" /> {interval.main.temp} {outUnit}</p>
+                      <p className="forecastItem"><img src={humidity} alt="humidity-icon" /> {interval.main.humidity}</p>
                       <p className="forecastItem"><img src={wind} alt="wind-icon" /> {interval.wind.speed}</p>
                     </div>
                   )}
-                  </div>
-          
-      
+                </div>
               ) : ('')}
-      
- 
-      </main>
-    </div>
-
-
-  );
-}
-
-export default Forecast;
+            </main>
+          </div>
+        );
+      }
+      export default Forecast;
