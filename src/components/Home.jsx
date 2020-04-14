@@ -12,7 +12,7 @@ import { convertUnixToTime } from '../consts/convertUnixToTime';
 
 export const Home = () => {
 
-  const {latitude, longitude, error} = usePosition();
+  const { latitude, longitude, error } = usePosition();
 
   const api = {
     key: '12713ce52420589c2732fa06b705ae93',
@@ -27,14 +27,14 @@ export const Home = () => {
   console.log(weather)
 
   const findUser = () => {
-  
+
     fetch(`https://hendrik-cors-proxy.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unit}&appid=${api.key}`)
       .then(res => res.json())
       .then(result => {
         setWeather(result)
         setOutUnit(unit === "metric" ? "°C" : "°F");
       });
-    if(error != null) {
+    if (error != null) {
       alert('Enable geolocation');
     }
   }
@@ -86,10 +86,9 @@ export const Home = () => {
             value="imperial"
             onChange={(e) => setUnit(e.target.value)}
           />
-           <label htmlFor="imperialButton">°F</label>
-           </div>
-
-           <button className="button" onClick={findUser}>Find Me</button>
+          <label htmlFor="imperialButton">°F</label>
+        </div>
+        <button className="button" onClick={findUser}>Find Me</button>
         {(typeof weather.main != 'undefined') ? (
           <div>
             <div className="location-box">
