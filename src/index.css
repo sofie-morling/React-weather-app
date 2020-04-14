@@ -172,3 +172,24 @@ main {
   display: flex;
   justify-content: space-evenly;
 }
+
+.weatherWrapper {
+  display: flex;
+  color: #fff;
+  font-size: 16px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 5px;
+  border: 1px solid white;
+  box-shadow: 0 4px 8px 0 black;
+}
+
+.card img {
+  width: 30px;
+}

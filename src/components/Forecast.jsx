@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 
 import wind from '../assets/wind.png';
 import humidity from '../assets/humidity.png';
-import sunrise from '../assets/sunrise.png';
-import sunset from '../assets/sunset.png';
+import temp from '../assets/temp.png';
 
 import { usePosition } from '../consts/usePosition';
-import { dateBuilder } from '../consts/dateBuilder';
-import { convertUnixToTime } from '../consts/convertUnixToTime';
 
 export const Forecast = () => {
 
@@ -87,40 +84,20 @@ export const Forecast = () => {
                 />
               </div>
       
-              {(typeof weather.main != 'undefined') ? (
-                <div>
-                  <div className="location-box">
-                    <div className="location">{weather.name}, {weather.sys.country}</div>
-                    <div className="date">{dateBuilder(new Date())}</div>
-                  </div>
-      
-                  <div className="weather-box">
-                    <div className="temp">
-                      {Math.round(weather.main.temp)} {outUnit}
-      
+              {(typeof weather.list != 'undefined') ? (
+                
+              
+                  <div className="weatherWrapper">
+                  {weather.list.map(interval => 
+                    <div className="card">
+                      <p className="forecastItem">{interval.dt_txt}</p> 
+                      <p className="forecastItem"><img src={temp} alt="temperature-icon" /> {interval.main.temp} {outUnit}</p> 
+                      <p className="forecastItem"><img src={humidity} alt="humidity-icon" /> {interval.main.humidity}</p> 
+                      <p className="forecastItem"><img src={wind} alt="wind-icon" /> {interval.wind.speed}</p>
                     </div>
-      
-                    <div className="weather">{weather.weather[0].main}</div>
-                    <div className="icon-row">
-                      <div className="wind-force"><img src={wind} alt="wind-icon" />
-                        {Math.round(weather.wind.speed)} M/S
-                      </div>
-      
-                      <div className="humidity"> <img src={humidity} alt="humidity-icon" />
-                        {Math.round(weather.main.humidity)}%
-                      </div>
-      
-                      <div className="sunrise"> <img src={sunrise} alt="sunrise-icon" />
-                        {convertUnixToTime(weather.sys.sunrise)}
-                      </div>
-      
-                      <div className="sunset"> <img src={sunset} alt="sunset-icon" />
-                        {convertUnixToTime(weather.sys.sunset)}
-                      </div>
-                    </div>
-      
+                  )}
                   </div>
-                </div>
+          
       
               ) : ('')}
       
