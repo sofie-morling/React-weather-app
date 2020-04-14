@@ -168,7 +168,9 @@ main {
 
 .icon-row {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  flex-direction: row;
+  
 }
 
 
@@ -184,9 +186,12 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin: 5px;
-  border: 1px solid white;
-  box-shadow: 0 4px 8px 0 black;
+  margin: 10px;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 16px;
+  padding: 15px 25px;
+  color: #FFF;
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.2); 
 }
 
 .card img {
