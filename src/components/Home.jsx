@@ -1,11 +1,18 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import wind from '../assets/wind.png';
 import humidity from '../assets/humidity.png';
 import sunrise from '../assets/sunrise.png';
 import sunset from '../assets/sunset.png';
 
+
+import { usePosition } from '../consts/usePosition';
+import { dateBuilder } from '../consts/dateBuilder';
+import { convertUnixToTime } from '../consts/convertUnixToTime';
+
+
 export const Home = () => {
+
+  const { latitude, longitude, error } = usePosition();
 
   const api = {
     key: '12713ce52420589c2732fa06b705ae93',
@@ -15,37 +22,23 @@ export const Home = () => {
 
   const [query, setQuery] = useState('')
   const [weather, setWeather] = useState({})
-  const [position, setPosition] = useState({})
   const [unit, setUnit] = useState('metric')
   const [outUnit, setOutUnit] = useState("")
+  console.log(weather)
 
-  const findUser = evt => {
+  const findUser = () => {
 
-    if (evt) {
-      navigator.geolocation.getCurrentPosition((position, error) => {
-
-        setPosition({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        })
-
-        if (error) {
-          alert('Please accept geolocation to fetch your position');
-        }
-      })
-    }
-  }
-
-  useEffect(() => {
-    fetch(`https://hendrik-cors-proxy.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&units=${unit}&appid=${api.key}`)
+    fetch(`https://hendrik-cors-proxy.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unit}&appid=${api.key}`)
       .then(res => res.json())
       .then(result => {
         setWeather(result)
         setOutUnit(unit === "metric" ? "°C" : "°F");
       });
-  }, [position])
+    if (error != null) {
+      alert('Enable geolocation');
+    }
+  }
 
-  // Weather search (location)
   const search = evt => {
     if (evt.key === 'Enter') {
       fetch(`${api.base}weather?q=${query}&units=${unit}&APPID=${api.key}`)
@@ -58,46 +51,6 @@ export const Home = () => {
     }
   }
 
-  // Date builder
-  const dateBuilder = d => {
-    let months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ]
-    let days = [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
-    ]
-
-    let day = days[d.getDay()]
-    let date = d.getDate()
-    let month = months[d.getMonth()]
-    let year = d.getFullYear()
-
-    return `${day} ${date} ${month} ${year}`
-  }
-
-  const convertUnixToTime = (unix_time) => {
-    let date = new Date(unix_time * 1000);
-    let hours = date.getHours();
-    let minutes = "0" + date.getMinutes();
-    return hours + ':' + minutes.substr(-2);
-  }
 
 
   return (
@@ -113,10 +66,9 @@ export const Home = () => {
             value={query}
             onKeyPress={search}
           />
+
         </div>
-        <button className="button" onClick={e => findUser(position)}>Find Me</button>
         <div className="radioButtons">
-          <label htmlFor="metricButton">°C</label>
           <input
             id="metricButton"
             type="radio"
@@ -125,7 +77,7 @@ export const Home = () => {
             value="metric"
             onChange={(e) => setUnit(e.target.value)}
           />
-          <label htmlFor="imperialButton">°F</label>
+          <label htmlFor="metricButton">°C</label>
           <input
             id="imperialButton"
             type="radio"
@@ -134,8 +86,9 @@ export const Home = () => {
             value="imperial"
             onChange={(e) => setUnit(e.target.value)}
           />
+          <label htmlFor="imperialButton">°F</label>
         </div>
-
+        <button className="button" onClick={findUser}>Find Me</button>
         {(typeof weather.main != 'undefined') ? (
           <div>
             <div className="location-box">
@@ -146,10 +99,14 @@ export const Home = () => {
             <div className="weather-box">
               <div className="temp">
                 {Math.round(weather.main.temp)} {outUnit}
-
               </div>
 
               <div className="weather">{weather.weather[0].main}</div>
+
+              <div className="icon">
+                <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}></img>
+              </div>
+
               <div className="icon-row">
                 <div className="wind-force"><img src={wind} alt="wind-icon" />
                   {Math.round(weather.wind.speed)} M/S

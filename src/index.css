@@ -32,10 +32,9 @@ main {
   width: 100%;
 }
 
-
 .search-box {
   width: 100%;
-  margin: 0 0 75px;
+  margin: 0;
 }
 
 .search-box .search-bar {
@@ -43,7 +42,6 @@ main {
   width: 100%;
   padding: 15px;
   
-
   appearance: none;
   background: none;
   border: none;
@@ -146,7 +144,7 @@ main {
   display: block;
   padding:0.35em 100px;
   border:0.1em solid #FFFFFF;
-  margin: 0 auto;
+  margin: 0 auto 18px;
   border-radius:0.12em;
   box-sizing: border-box;
   text-decoration:none;
@@ -167,7 +165,46 @@ main {
   }
 }
 
+
 .icon-row {
   display: flex;
   justify-content: space-evenly;
 }
+
+input[type=radio] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+label {
+  color: white; 
+  display: inline-block;
+  font-weight: 600;
+  padding: 5px 20px;
+
+}
+
+input[type=radio]:checked + label{
+  color:  #808080;
+  background: white;
+}
+
+label + input[type=radio] + label {
+  border-left: solid;
+  border-width: 3px;
+  border-color: white;
+  border-radius: 0 16px 16px 0;
+}
+
+.radioButtons {
+  border: solid;
+  border-width: 1px;
+  border-color: white;
+  display: inline-block;
+  margin: 30px auto 75px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0px 5px rgba(0,0,0,0.2);
+}
+
