@@ -161,7 +161,9 @@ main {
 
 .icon-row {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  flex-direction: row;
+  
 }
 
 
