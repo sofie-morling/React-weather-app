@@ -49,7 +49,9 @@ export const Forecast = () => {
         });
     }
       
-  } console.log(weather); // <--- Behövs denna?
+  } 
+  
+  console.log(weather); // <--- Behövs denna?
 
   return (
     <div className="home">
