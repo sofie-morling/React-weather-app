@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Forecast from './components/Forecast';
-import About from './components/About';
 import NotFound from './components/NotFound';
 
 function App() {
@@ -19,10 +18,7 @@ function App() {
           <Switch>
             <Route path="/forecast">
               <Forecast />
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
+            </Route>            
             <Route path="/">
               <Home />
             </Route>

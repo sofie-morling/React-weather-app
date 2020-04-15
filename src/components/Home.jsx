@@ -3,22 +3,18 @@ import wind from '../assets/wind.png';
 import humidity from '../assets/humidity.png';
 import sunrise from '../assets/sunrise.png';
 import sunset from '../assets/sunset.png';
-
-
 import { usePosition } from '../consts/usePosition';
 import { dateBuilder } from '../consts/dateBuilder';
 import { convertUnixToTime } from '../consts/convertUnixToTime';
 
-
 export const Home = () => {
 
   const { latitude, longitude, error } = usePosition();
-
+    // API info
   const api = {
     key: '12713ce52420589c2732fa06b705ae93',
     base: 'https://api.openweathermap.org/data/2.5/'
   }
-
 
   const [query, setQuery] = useState('')
   const [weather, setWeather] = useState({})
@@ -28,6 +24,7 @@ export const Home = () => {
 
   console.log(weather)
 
+  // Location finder
   const findUser = () => {
 
     fetch(`https://hendrik-cors-proxy.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unit}&appid=${api.key}`)
@@ -42,7 +39,7 @@ export const Home = () => {
       alert('Enable geolocation');
     }
   }
-
+  // Search function
   const search = evt => {
     if (evt.key === 'Enter') {
       fetch(`${api.base}weather?q=${query}&units=${unit}&APPID=${api.key}`)
@@ -56,12 +53,11 @@ export const Home = () => {
     }
   }
 
-
-
   return (
     <div className="home">
 
       <main>
+          {/* Search bar */}
         <div className='search-box'>
           <input
             type='text'
@@ -71,8 +67,9 @@ export const Home = () => {
             value={query}
             onKeyPress={search}
           />
-
         </div>
+
+        {/* Radio Buttons for C/F */}
         <div className="radioButtons">
           <input
             id="metricButton"
@@ -93,6 +90,8 @@ export const Home = () => {
           />
           <label htmlFor="imperialButton">°F</label>
         </div>
+
+        {/* Button "Find current position" */}
         <button className="button" onClick={findUser}>Find Me</button>
         {(typeof weather.main != 'undefined') ? (
           <div>
@@ -124,23 +123,16 @@ export const Home = () => {
                 <div className="sunrise"> <img src={sunrise} alt="sunrise-icon" />
                   {convertUnixToTime(weather.sys.sunrise)}
                 </div>
-
+                
                 <div className="sunset"> <img src={sunset} alt="sunset-icon" />
                   {convertUnixToTime(weather.sys.sunset)}
                 </div>
               </div>
-
             </div>
           </div>
-
         ) : ('')}
-
-
       </main>
     </div>
-
-
   );
 }
-
 export default Home;
