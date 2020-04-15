@@ -17,7 +17,10 @@ export const Forecast = () => {
         const [query, setQuery] = useState('')
         const [weather, setWeather] = useState({})
         const [unit, setUnit] = useState('metric')
-        const [outUnit, setOutUnit] = useState("")
+        const [outUnit, setOutUnit] = useState('')
+        const [windUnit, setWindUnit] = useState('')
+
+
       
         const findUser = () => {
   
@@ -25,7 +28,9 @@ export const Forecast = () => {
             .then(res => res.json())
             .then(result => {
               setWeather(result)
-              setOutUnit(unit === "metric" ? "°C" : "°F");
+              setOutUnit(unit === 'metric' ? '°C' : '°F');
+              setWindUnit(unit === 'metric' ? 'M/S' : 'M/H' );
+
             });
           if(error != null) {
             alert('Enable geolocation');
@@ -39,7 +44,8 @@ export const Forecast = () => {
               .then(result => {
                 setWeather(result)
                 setQuery('')
-                setOutUnit(unit === "metric" ? "°C" : "°F");
+                setOutUnit(unit === "metric" ? '°C' : '°F');
+                setWindUnit(unit === 'metric' ? 'M/S' : 'M/H');
               });
           }
         }
@@ -87,8 +93,8 @@ export const Forecast = () => {
                     <div key={interval.dt_txt} className="card">
                       <p className="forecastItem">{interval.dt_txt}</p>
                       <p className="forecastItem"><img src={temp} alt="temperature-icon" /> {interval.main.temp} {outUnit}</p>
-                      <p className="forecastItem"><img src={humidity} alt="humidity-icon" /> {interval.main.humidity}</p>
-                      <p className="forecastItem"><img src={wind} alt="wind-icon" /> {interval.wind.speed}</p>
+                      <p className="forecastItem"><img src={humidity} alt="humidity-icon" /> {interval.main.humidity} %</p>
+                      <p className="forecastItem"><img src={wind} alt="wind-icon" /> {interval.wind.speed} {windUnit}</p>
                     </div>
                   )}
                 </div>
