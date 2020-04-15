@@ -62,8 +62,8 @@ export const Home = () => {
             value={query}
             onKeyPress={search}
           />
-
         </div>
+
         {/* Radio Buttons for C/F */}
         <div className="radioButtons">
           <input
@@ -85,6 +85,7 @@ export const Home = () => {
           />
           <label htmlFor="imperialButton">°F</label>
         </div>
+
         {/* Button "Find current position" */}
         <button className="button" onClick={findUser}>Find Me</button>
         {(typeof weather.main != 'undefined') ? (
@@ -117,23 +118,16 @@ export const Home = () => {
                 <div className="sunrise"> <img src={sunrise} alt="sunrise-icon" />
                   {convertUnixToTime(weather.sys.sunrise)}
                 </div>
-
+                
                 <div className="sunset"> <img src={sunset} alt="sunset-icon" />
                   {convertUnixToTime(weather.sys.sunset)}
                 </div>
               </div>
-
             </div>
           </div>
-
         ) : ('')}
-
-
       </main>
     </div>
-
-
   );
 }
-
 export default Home;
