@@ -19,7 +19,9 @@ export const Home = () => {
   const [query, setQuery] = useState('')
   const [weather, setWeather] = useState({})
   const [unit, setUnit] = useState('metric')
-  const [outUnit, setOutUnit] = useState("")
+  const [outUnit, setOutUnit] = useState('')
+  const [windUnit, setWindUnit] = useState('')
+
   console.log(weather)
 
   // Location finder
@@ -30,7 +32,9 @@ export const Home = () => {
       .then(result => {
         setWeather(result)
         setOutUnit(unit === "metric" ? "°C" : "°F");
+        setWindUnit(unit === 'metric' ? 'M/S' : 'M/H' );
       });
+      
     if (error != null) {
       alert('Enable geolocation');
     }
@@ -44,6 +48,7 @@ export const Home = () => {
           setWeather(result)
           setQuery('')
           setOutUnit(unit === "metric" ? "°C" : "°F");
+          setWindUnit(unit === 'metric' ? 'M/S' : 'M/H' );
         });
     }
   }
@@ -108,7 +113,7 @@ export const Home = () => {
 
               <div className="icon-row">
                 <div className="wind-force"><img src={wind} alt="wind-icon" />
-                  {Math.round(weather.wind.speed)} M/S
+                  {Math.round(weather.wind.speed)} {windUnit}
                 </div>
 
                 <div className="humidity"> <img src={humidity} alt="humidity-icon" />
