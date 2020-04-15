@@ -11,19 +11,15 @@ body {
 .home {
   background-color: #808080;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100%;
+  background-image: url(./assets/clouds-background.jpg);
 }
 
 .app {
-  background-image: url(./assets/cold-bg.jpeg);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   transition: 0.4s ease;
-}
-
-.app.warm {
-  background-image: url(./assets/warm-bg.jpeg);
 }
 
 main {
@@ -33,7 +29,7 @@ main {
 }
 
 .search-box {
-  width: 100%;
+  width: 25%;
   margin: 0;
 }
 
@@ -49,7 +45,6 @@ main {
 
   background-color: rgba(255,255,255,0.5);
   border-radius: 16px 16px 16px 16px;
-  margin-top: -25px;
 
   box-shadow: 0px 5px rgba(0,0,0,0.2);
 
@@ -68,7 +63,7 @@ main {
   font-size: 32px;
   font-weight: 500;
   text-align: center;
-  
+ 
 }
 
 .location-box .date {
@@ -113,8 +108,7 @@ main {
   color: black;
   font-size: 28px;
   font-weight: 700;
-  padding-bottom: 20px;
-  
+  padding-bottom: 20px; 
 }
   
 .weather-box .humidity {
@@ -165,7 +159,6 @@ main {
   }
 }
 
-
 .icon-row {
   display: flex;
   justify-content: space-evenly;
@@ -185,8 +178,7 @@ main {
   flex-direction: column;
   justify-content: space-around;
   margin: 5px;
-  border: 1px solid white;
-  box-shadow: 0 4px 8px 0 black;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .card img {
