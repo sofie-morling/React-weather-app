@@ -3,6 +3,7 @@ import wind from '../assets/wind.png';
 import humidity from '../assets/humidity.png';
 import temp from '../assets/temp.png';
 import { usePosition } from '../consts/usePosition';
+import { dateBuilder } from '../consts/dateBuilder';
 
 export const Forecast = () => {
 
@@ -91,16 +92,27 @@ export const Forecast = () => {
         {/* Button "Find current position" */}
         <button className="button" onClick={findUser}>Find Me</button>
         {(typeof weather.list != 'undefined') ? (
-          <div className="weatherWrapper">
-            {weather.list.map(interval =>
-              <div key={interval.dt_txt} className="card">
-                <p className="forecastItem">{interval.dt_txt}</p>
-                <p className="forecastItem"><img src={temp} alt="temperature-icon" /> {interval.main.temp} {outUnit}</p>
-                <p className="forecastItem"><img src={humidity} alt="humidity-icon" /> {interval.main.humidity} %</p>
-                <p className="forecastItem"><img src={wind} alt="wind-icon" /> {interval.wind.speed} {windUnit}</p>
-              </div>
-            )}
-          </div>
+
+          <>
+            <div className="location-box">
+              <div className="location">{weather.city.name} {weather.city.country}</div>
+              <div className="date">{dateBuilder(new Date())}</div>
+            </div>
+
+            <div className="weatherWrapper">
+              {weather.list.map(interval =>
+                <div key={interval.dt_txt} className="card">
+                  <p className="forecastItem">{interval.dt_txt.split(' ')[0].split(':')}</p>
+                  <p className="forecastItem">{interval.dt_txt.split(' ')[1].split('-')}</p>
+                  <img src={`http://openweathermap.org/img/wn/${interval.weather[0].icon}@2x.png`} alt="weather-icon"></img>
+                  <p className="forecastItem"><img src={temp} alt="temperature-icon" /> {Math.round(interval.main.temp)} {outUnit}</p>
+                  <p className="forecastItem"><img src={humidity} alt="humidity-icon" /> {interval.main.humidity}%</p>
+                  <p className="forecastItem"><img src={wind} alt="wind-icon" /> {interval.wind.speed}</p>
+                </div>
+              )}
+            </div>
+          </>
+
         ) : ('')}
       </main>
     </div>

@@ -107,9 +107,9 @@ export const Home = () => {
 
               <div className="weather">{weather.weather[0].main}</div>
 
-              <div className="icon">
-                <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="weather-icon"></img>
-              </div>
+
+              <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="weather-icon"></img>
+
 
               <div className="icon-row">
                 <div className="wind-force"><img src={wind} alt="wind-icon" />
