@@ -249,6 +249,11 @@ label + input[type=radio] + label {
       width: 100%;
       margin: 0;
     }
+
+    .icon-row {
+      display: flex;
+      flex-flow: column;
+    }
   }
 
   /* Ipad */
