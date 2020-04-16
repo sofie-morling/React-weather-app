@@ -2,12 +2,12 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Forecast from './components/Forecast';
-import About from './components/About';
 import NotFound from './components/NotFound';
 
 function App() {
   return (
     <Router>
+
 
       <div>
         <nav>
@@ -30,6 +30,7 @@ function App() {
           <NotFound />
         </Route>
       </Switch>
+
 
     </Router>
 

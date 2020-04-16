@@ -11,20 +11,10 @@ body {
 .home {
   background-color: #808080;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100%;
+  background-image: url(./assets/clouds-background.jpg);
 }
 
-.app {
-  background-image: url(./assets/cold-bg.jpeg);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  transition: 0.4s ease;
-}
-
-.app.warm {
-  background-image: url(./assets/warm-bg.jpeg);
-}
 
 main {
   min-height: 100vh;
@@ -33,15 +23,15 @@ main {
 }
 
 .search-box {
-  width: 100%;
+  width: 25%;
   margin: 0;
 }
 
 .search-box .search-bar {
   display: block;
   width: 100%;
-  padding: 15px;
-  
+  padding: 15px;  
+
   appearance: none;
   background: none;
   border: none;
@@ -49,13 +39,10 @@ main {
 
   background-color: rgba(255,255,255,0.5);
   border-radius: 16px 16px 16px 16px;
-  margin-top: -25px;
 
   box-shadow: 0px 5px rgba(0,0,0,0.2);
-
   color: #313131;
   font-size: 20px;
-
   transition: 0.4s ease;
 }
 
@@ -68,7 +55,6 @@ main {
   font-size: 32px;
   font-weight: 500;
   text-align: center;
-  
 }
 
 .location-box .date {
@@ -76,8 +62,7 @@ main {
   font-size: 20px;
   font-weight: 300;
   font-style: italic;
-  text-align: center;
-  
+  text-align: center;  
 }
 
 .weather-box {
@@ -90,7 +75,6 @@ main {
   margin: 30px auto;
   background-color: rgba(255,255,255,0.2);
   border-radius: 16px;
-
   padding: 15px 25px;
   
   color: #FFF;
@@ -105,16 +89,14 @@ main {
 .weather-box .weather {
   color: #FFF;
   font-size: 48px;
-  font-weight: 700;
-  
+  font-weight: 700;  
 }
 
 .weather-box .wind-force {
   color: black;
   font-size: 28px;
   font-weight: 700;
-  padding-bottom: 20px;
-  
+  padding-bottom: 20px; 
 }
   
 .weather-box .humidity {
@@ -134,8 +116,7 @@ main {
 .weather-box .sunset {
   color: black;
   font-size: 28px;
-  font-weight: 700;
-  
+  font-weight: 700;  
 }
 
 .button {
@@ -144,7 +125,7 @@ main {
   display: block;
   padding:0.35em 100px;
   border:0.1em solid #FFFFFF;
-  margin: 0 auto 18px;
+  margin: 0 auto;
   border-radius:0.12em;
   box-sizing: border-box;
   text-decoration:none;
@@ -165,14 +146,10 @@ main {
   }
 }
 
-
 .icon-row {
   display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  
+  justify-content: space-evenly;
 }
-
 
 .weatherWrapper {
   display: flex;
@@ -186,15 +163,15 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin: 10px;
-  background-color: rgba(255,255,255,0.2);
-  border-radius: 16px;
-  padding: 15px 25px;
-  color: #FFF;
-  box-shadow: 3px 6px rgba(0, 0, 0, 0.2); 
+  margin: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+
+  border: 1px solid white;
+  box-shadow: 0 4px 8px 0 black;
 }
 
 .card img {
+
   width: 35px;
 }
 
@@ -260,3 +237,4 @@ label + input[type=radio] + label {
   overflow: hidden;
   box-shadow: 0px 5px rgba(0,0,0,0.2);
 }
+
