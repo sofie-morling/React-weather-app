@@ -20,9 +20,6 @@ function App() {
         <Route path="/forecast">
           <Forecast />
         </Route>
-        <Route path="/about">
-          <About />
-        </Route>
         <Route path="/">
           <Home />
         </Route>
