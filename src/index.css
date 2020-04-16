@@ -236,7 +236,7 @@ label + input[type=radio] + label {
   box-shadow: 0px 5px rgba(0,0,0,0.2);
 }
 
-  /* Ipad */
+  /* Tablet */
 
 @media screen and (max-width: 768px) {
   .home { 
@@ -247,7 +247,7 @@ label + input[type=radio] + label {
     margin: 0;
   }
 }
-      /* Mobile device */
+    /* Mobile */
 
 @media screen and (max-width: 600px) {
   .home { 
@@ -264,7 +264,7 @@ label + input[type=radio] + label {
   }
 }
 
-  /* iPad Pro */
+  /* Tablet large */
 
 @media screen and (min-width: 1024px) and (min-height: 1320px) {
   .home { 
