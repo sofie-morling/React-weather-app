@@ -107,7 +107,7 @@ export const Forecast = () => {
                   <img src={`http://openweathermap.org/img/wn/${interval.weather[0].icon}@2x.png`} alt="weather-icon"></img>
                   <p className="forecastItem"><img src={temp} alt="temperature-icon" /> {Math.round(interval.main.temp)} {outUnit}</p>
                   <p className="forecastItem"><img src={humidity} alt="humidity-icon" /> {interval.main.humidity}%</p>
-                  <p className="forecastItem"><img src={wind} alt="wind-icon" /> {interval.wind.speed}</p>
+                  <p className="forecastItem"><img src={wind} alt="wind-icon" /> {interval.wind.speed} {windUnit}</p>
                 </div>
               )}
             </div>

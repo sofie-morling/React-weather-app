@@ -11,7 +11,7 @@ body {
 .home {
   background-color: #808080;
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   background-image: url(./assets/clouds-background.jpg);
 }
 
@@ -158,20 +158,18 @@ main {
   justify-content: space-around;
   flex-wrap: wrap;
 }
-
 .card {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin: 5px;
-  background-color: rgba(255, 255, 255, 0.2);
-
-  border: 1px solid white;
-  box-shadow: 0 4px 8px 0 black;
+  margin: 10px;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 16px;
+  padding: 15px 25px;
+  color: #FFF;
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.2); 
 }
-
 .card img {
-
   width: 35px;
 }
 
@@ -238,3 +236,44 @@ label + input[type=radio] + label {
   box-shadow: 0px 5px rgba(0,0,0,0.2);
 }
 
+  /* Tablet */
+
+@media screen and (max-width: 768px) {
+  .home { 
+    background-position: center;
+  }
+  .search-box {
+    width: 50%;
+    margin: 0;
+  }
+}
+    /* Mobile */
+
+@media screen and (max-width: 600px) {
+  .home { 
+    background-position: center;
+  }
+  .search-box {
+    width: 100%;
+    margin: 0;
+  }
+
+  .icon-row {
+    display: flex;
+    flex-flow: column;
+  }
+}
+
+  /* Tablet large */
+
+@media screen and (min-width: 1024px) and (min-height: 1320px) {
+  .home { 
+    background-position: center;
+  }
+  .search-box {
+    width: 25%;
+    margin: 0;
+  }
+}
+  
+  
