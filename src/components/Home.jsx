@@ -10,7 +10,7 @@ import { convertUnixToTime } from '../consts/convertUnixToTime';
 export const Home = () => {
 
   const { latitude, longitude, error } = usePosition();
-    // API info
+  // API info
   const api = {
     key: '12713ce52420589c2732fa06b705ae93',
     base: 'https://api.openweathermap.org/data/2.5/'
@@ -32,9 +32,9 @@ export const Home = () => {
       .then(result => {
         setWeather(result)
         setOutUnit(unit === "metric" ? "°C" : "°F");
-        setWindUnit(unit === 'metric' ? 'M/S' : 'M/H' );
+        setWindUnit(unit === 'metric' ? 'M/S' : 'M/H');
       });
-      
+
     if (error != null) {
       alert('Enable geolocation');
     }
@@ -48,7 +48,7 @@ export const Home = () => {
           setWeather(result)
           setQuery('')
           setOutUnit(unit === "metric" ? "°C" : "°F");
-          setWindUnit(unit === 'metric' ? 'M/S' : 'M/H' );
+          setWindUnit(unit === 'metric' ? 'M/S' : 'M/H');
         });
     }
   }
@@ -57,7 +57,7 @@ export const Home = () => {
     <div className="home">
 
       <main>
-          {/* Search bar */}
+        {/* Search bar */}
         <div className='search-box'>
           <input
             type='text'
@@ -92,7 +92,7 @@ export const Home = () => {
         </div>
 
         {/* Button "Find current position" */}
-        <button className="button" onClick={findUser}>Find Me</button>
+        <button className="button" onClick={findUser}>Find your location</button>
         {(typeof weather.main != 'undefined') ? (
           <div>
             <div className="location-box">
@@ -102,7 +102,7 @@ export const Home = () => {
 
             <div className="weather-box">
               <div className="temp">
-                {Math.round(weather.main.temp)} {outUnit}
+                {Math.round(weather.main.temp)}{outUnit}
               </div>
 
               <div className="weather">{weather.weather[0].main}</div>
@@ -120,12 +120,10 @@ export const Home = () => {
                   {Math.round(weather.main.humidity)}%
                 </div>
 
-                <div className="sunrise"> <img src={sunrise} alt="sunrise-icon" />
-                  {convertUnixToTime(weather.sys.sunrise)}
+                <div className="sunrise"> <img src={sunrise} alt="sunrise-icon" /> {convertUnixToTime(weather.sys.sunrise)}
                 </div>
-                
-                <div className="sunset"> <img src={sunset} alt="sunset-icon" />
-                  {convertUnixToTime(weather.sys.sunset)}
+
+                <div className="sunset"> <img src={sunset} alt="sunset-icon" /> {convertUnixToTime(weather.sys.sunset)}
                 </div>
               </div>
             </div>
